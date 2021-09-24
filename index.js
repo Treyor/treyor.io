@@ -5,7 +5,7 @@ var streamConstraints = { audio: true, video: true }; // Запрашиваем 
 var streamConstraints = {
   audio: true,
   video: {
-    mandatory: { maxWidth: "320", maxHeight: "240", maxFrameRate: "5" },
+    mandatory: { maxWidth: "1920", maxHeight: "1080", maxFrameRate: "5" },
     optional: [],
   },
 };
@@ -22,8 +22,9 @@ function getUserMedia_error(error) {
 }
 
 function getUserMedia_click() {
+  navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia
   console.log("getUserMedia_click()");
-  navigator.mozGetUserMedia(
+  navigator.getUserMedia(
     streamConstraints,
     getUserMedia_success,
     getUserMedia_error
