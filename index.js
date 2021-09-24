@@ -11,8 +11,9 @@ var streamConstraints = {
 };
 
 function getUserMedia_success(stream) {
+  let video = document.querySelector('#localVideo1')
   console.log("getUserMedia_success():", stream);
-  localVideo1.src = URL.createObjectURL(stream); // Подключаем медиапоток к HTML-элементу <video>
+  video.srcObject = stream; // Подключаем медиапоток к HTML-элементу <video>
   localStream = stream; // и сохраняем в глобальной переменной для дальнейшего использования
 }
 
@@ -22,7 +23,7 @@ function getUserMedia_error(error) {
 
 function getUserMedia_click() {
   console.log("getUserMedia_click()");
-  navigator.webkitGetUserMedia(
+  navigator.mozGetUserMedia(
     streamConstraints,
     getUserMedia_success,
     getUserMedia_error
